@@ -12,7 +12,7 @@ const server = http.createServer(app);
 
 app.get("/");
 
-app.get("/claims");
+app.get("/claims", claimsController.getClaims);
 
 app.post("/claims", claimsController.createClaim);
 

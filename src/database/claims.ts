@@ -25,4 +25,13 @@ export default class claimsDB {
             return { error };
         }
     }
+
+    static async getAllClaims() {
+        try {
+            return await claims.find().toArray(); 
+        } catch (error) {
+            console.error(`Error occurred while getting claims, ${error}`);
+            return { error };
+        }
+    }
 }

@@ -22,7 +22,14 @@ export async function createClaim(req: Request, res: Response) {
 
         await claimsDB.addClaim(claim);
 
-        return res.status(200).json("Reclamo creado con exito!");
+        const response = {
+            meta: {
+                status: 200,
+                message: "Reclamo creado con exito!"
+            }
+        }
+
+        return res.json(response);
     } catch (error) {
        return res.status(500).json(error); 
     }
