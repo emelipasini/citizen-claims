@@ -18,7 +18,7 @@ app.post("/claims", claimsController.createClaim);
 
 app.put("/claims/:id");
 
-app.delete("/claims/:id");
+app.delete("/claims/:id", claimsController.deleteClaim);
 
 MongoClient.connect(config.get("dbURI"))
     .then(async (client) => {

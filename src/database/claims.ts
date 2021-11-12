@@ -1,4 +1,4 @@
-import { Collection, MongoClient } from "mongodb";
+import { Collection, MongoClient, ObjectId } from "mongodb";
 import config from "config";
 
 import { Claim } from "../domain/claim";
@@ -31,6 +31,24 @@ export default class claimsDB {
             return await claims.find().toArray(); 
         } catch (error) {
             console.error(`Error occurred while getting claims, ${error}`);
+            return { error };
+        }
+    }
+
+    static async deleteClaim(id: string) {
+        try {
+            await claims.deleteOne({ _id: new ObjectId(id) });
+        } catch (error) {
+            console.error(`Error occurred while deleting claim, ${error}`);
+            return { error };
+        }
+    }
+
+    static async findClaim(id: string) {
+        try {
+            return await claims.findOne({ _id: new ObjectId(id) }); 
+        } catch (error) {
+            console.error(`Error occurred while finding claim, ${error}`);
             return { error };
         }
     }
