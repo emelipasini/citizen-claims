@@ -44,6 +44,24 @@ export default class claimsDB {
         }
     }
 
+    static async updateClaim(claimId: string, claim: Claim) {
+        try {
+            await claims.updateOne(
+                { _id: new ObjectId(claimId) },
+                {
+                    $set: {
+                        title: claim.title,
+                        description: claim.description,
+                        municipality: claim.municipality,
+                        image: claim.image
+                    }
+                } 
+            ) 
+        } catch (error) {
+            
+        }
+    }
+
     static async findClaim(id: string) {
         try {
             return await claims.findOne({ _id: new ObjectId(id) }); 

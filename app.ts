@@ -10,13 +10,13 @@ import claimsDB from "./src/database/claims";
 export const app = express();
 const server = http.createServer(app);
 
-app.get("/");
-
 app.get("/claims", claimsController.getClaims);
+
+app.get("/");
 
 app.post("/claims", claimsController.createClaim);
 
-app.put("/claims/:id");
+app.put("/claims/:id", claimsController.updateClaim);
 
 app.delete("/claims/:id", claimsController.deleteClaim);
 
