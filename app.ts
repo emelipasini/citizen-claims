@@ -3,22 +3,16 @@ import express from "express";
 import http from "http";
 import config from "config";
 
-import {claimsController} from "./src/api/claims";
+import claimsController from "./src/api/claims";
 
 import claimsDB from "./src/database/claims";
 
 export const app = express();
 const server = http.createServer(app);
 
-app.get("/claims", claimsController.getClaims);
+app.use(express.static('public'));
 
-app.get("/");
-
-app.post("/claims", claimsController.createClaim);
-
-app.put("/claims/:id", claimsController.updateClaim);
-
-app.delete("/claims/:id", claimsController.deleteClaim);
+app.use("/claims", claimsController);
 
 MongoClient.connect(config.get("dbURI"))
     .then(async (client) => {

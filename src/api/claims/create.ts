@@ -7,6 +7,8 @@ export async function createClaim(req: Request, res: Response) {
     try {
         const claim: Claim = req.query as any;
 
+        claim.image = req.file.filename;
+
         if(claim.title.trim().length === 0) {
             return res.status(400).json({ "message": "El titulo es obligatorio" });            
         }

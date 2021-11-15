@@ -2,11 +2,15 @@ import { Request, Response } from "express";
 
 import claimsDB from "../../database/claims";
 
-import {Claim} from "../../domain/claim";
+import { Claim } from "../../domain/claim";
 
 export async function getClaims(req: Request, res: Response) {
     try {
         const claims: Claim[] = await claimsDB.getAllClaims() as any;
+
+        for (const claim of claims) {
+            claim.image = `localhost:4200/claims/${claim.image}`; 
+        }
 
         const response = {
             meta: {
