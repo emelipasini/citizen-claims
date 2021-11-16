@@ -28,7 +28,7 @@ export async function updateClaim(req: Request, res: Response) {
             return res.status(400).json({ "message": "La comuna es obligatoria" });            
         }
         if(claim.image.trim().length === 0) {
-            return res.status(400).json({ "message": "La comuna es obligatoria" });            
+            return res.status(400).json({ "message": "La imagen es obligatoria" });            
         }
 
         await claimsDB.updateClaim(claimId, claim);

@@ -58,7 +58,8 @@ export default class claimsDB {
                 } 
             ) 
         } catch (error) {
-            
+            console.error(`Error occurred while updating claim, ${error}`);    
+            return { error };
         }
     }
 
