@@ -14,6 +14,10 @@ export async function updateClaim(req: Request, res: Response) {
             return res.status(404).json({ "message": "No se pudo encontrar el reclamo" });
         }
 
+        if(req.file) {
+            claim.image = req.file.filename;
+        }
+
         if(claim.title.trim().length === 0) {
             return res.status(400).json({ "message": "El titulo es obligatorio" });            
         }

@@ -14,9 +14,9 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname));
     }
-})
+});
 
-const upload = multer({ storage })
+const upload = multer({ storage });
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.get("/", getClaims);
 
 router.post("/", upload.single("image"), createClaim);
 
-router.put("/:id", updateClaim);
+router.put("/:id", upload.single("image"), updateClaim);
 
 router.delete("/:id", deleteClaim);
 
