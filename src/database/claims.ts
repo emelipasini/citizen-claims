@@ -26,9 +26,11 @@ export default class claimsDB {
         }
     }
 
-    static async getAllClaims() {
+    static async getAllClaims(offset: number) {
         try {
-            return await claims.find().toArray(); 
+            const totalClaims = await claims.countDocuments();
+            const someClaims = await claims.find().limit(10).skip(offset).toArray(); 
+            return { totalClaims, someClaims };
         } catch (error) {
             console.error(`Error occurred while getting claims, ${error}`);
             return { error };

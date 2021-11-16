@@ -18,7 +18,7 @@ yarn start
 
 ## Endpoints
 
-- [GET] /claims: lista todos los reclamos
+- [GET] /claims: lista todos los reclamos paginado de a 10
 
 - [POST] /claims: crea un nuevo reclamo. Espera title, description, municipality y un archivo con nombre image
 
